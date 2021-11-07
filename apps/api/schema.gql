@@ -1,0 +1,75 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Company {
+  _id: ID!
+  name: String!
+  products: [Product!]!
+}
+
+type Product {
+  _id: ID!
+  modelName: String!
+  images: String!
+  type: String!
+  price: Float!
+  description: String!
+  company: Company!
+}
+
+type User {
+  _id: ID!
+  email: String!
+  name: String!
+  token: String!
+}
+
+type Query {
+  companies: [Company!]!
+  products: [Product!]!
+  product(input: FindProductInput!): Product!
+  me: User
+  logout: User
+}
+
+input FindProductInput {
+  _id: String!
+}
+
+type Mutation {
+  createCompany(input: CreateCompanyInput!): Company!
+  createProduct(input: CreateProductInput!): Product!
+  registerUser(input: CreateUserInput!): User!
+  confirmUser(input: ConfirmUserInput!): User!
+  login(input: LoginInput!): User
+}
+
+input CreateCompanyInput {
+  name: String!
+}
+
+input CreateProductInput {
+  modelName: String!
+  images: String!
+  type: String!
+  price: Float!
+  description: String!
+  company: String!
+}
+
+input CreateUserInput {
+  name: String!
+  email: String!
+  password: String!
+}
+
+input ConfirmUserInput {
+  email: String!
+  confirmToken: String!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
