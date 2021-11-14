@@ -5,18 +5,12 @@ import { Model } from 'mongoose';
 import { nanoid } from 'nanoid';
 
 import Ctx from '../types/context.type';
-import {
-  User,
-  UserDocument,
-  CreateUserInput,
-  ConfirmUserInput,
-  LoginInput,
-} from './user.schema';
+import { User, UserDocument, CreateUserInput, ConfirmUserInput, LoginInput } from './user.schema';
 import { signJwt } from '../utils/jwt.utils';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
+  @InjectModel(User.name) private userModel: Model<UserDocument>;
 
   async createUser(input: CreateUserInput) {
     const confirmToken = nanoid(32);
@@ -41,11 +35,9 @@ export class UserService {
   }
 
   async login({ email, password }: LoginInput, context: Ctx) {
-    const user = await this.userModel
-      .findOne({ email })
-      .select('-__v -confirmToken');
+    const user = await this.userModel.findOne({ email }).select('-__v -confirmToken');
 
-      if (!user || !(await user.comparePassword(password))) {
+    if (!user || !(await user.comparePassword(password))) {
       throw new Error('Invalid email or password');
     }
 
@@ -54,16 +46,14 @@ export class UserService {
     }
 
     const jwt = signJwt(omit(user.toJSON(), ['password', 'active']));
-    const cookie = `token=${jwt}; HttpOnly; Path=/; Max-Age=${
-      1000 * 60 * 60 * 24 * 7
-    }`;
+    const cookie = `token=${jwt}; HttpOnly; Path=/; Max-Age=${1000 * 60 * 60 * 24 * 7}`;
     context.res.setHeader('Set-Cookie', cookie);
 
     return user;
   }
 
   async logout(context) {
-    const cookie = `token="; HttpOnly; Path=/; Max-Age=0`;
+    const cookie = 'token="; HttpOnly; Path=/; Max-Age=0';
 
     context.res.setHeader('Set-Cookie', cookie);
     return null;

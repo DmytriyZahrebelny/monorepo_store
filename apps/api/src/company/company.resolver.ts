@@ -1,21 +1,13 @@
-import {
-  Resolver,
-  Query,
-  ResolveField,
-  Parent,
-  Mutation,
-  Args,
-} from '@nestjs/graphql';
+import { Resolver, Query, ResolveField, Parent, Mutation, Args } from '@nestjs/graphql';
 import { ProductService } from '../product/product.service';
 import { Company, CreateCompanyInput } from './company.schema';
 import { CompanyService } from './company.service';
 
 @Resolver(() => Company)
 export class CompanyResolver {
-  constructor(
-    private companyService: CompanyService,
-    private bookService: ProductService,
-  ) {}
+  private companyService: CompanyService;
+
+  private bookService: ProductService;
 
   @Query(() => [Company])
   async companies() {
