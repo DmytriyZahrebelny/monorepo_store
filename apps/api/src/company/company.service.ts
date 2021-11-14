@@ -5,9 +5,7 @@ import { Company, CompanyDocument } from './company.schema';
 
 @Injectable()
 export class CompanyService {
-  constructor(
-    @InjectModel(Company.name) private companyModel: Model<CompanyDocument>,
-  ) {}
+  @InjectModel(Company.name) private companyModel: Model<CompanyDocument>;
 
   async findById(id) {
     return this.companyModel.findById(id).lean();

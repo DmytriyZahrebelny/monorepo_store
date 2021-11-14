@@ -1,16 +1,12 @@
 import { Args, Mutation, Resolver, Query, Context } from '@nestjs/graphql';
-import {
-  ConfirmUserInput,
-  CreateUserInput,
-  LoginInput,
-  User,
-} from './user.schema';
+
+import { ConfirmUserInput, CreateUserInput, LoginInput, User } from './user.schema';
 import { UserService } from './user.service';
 import Ctx from '../types/context.type';
 
 @Resolver('User')
 export class UserResolver {
-  constructor(private readonly userService: UserService) {}
+  private readonly userService: UserService;
 
   @Mutation(() => User)
   async registerUser(@Args('input') input: CreateUserInput) {
