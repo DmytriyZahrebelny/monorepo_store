@@ -6,7 +6,7 @@ import { Product, CreateProductInput, ProductDocument } from './product.schema';
 
 @Injectable()
 export class ProductService {
-  @InjectModel(Product.name) private productModel: Model<ProductDocument>;
+  constructor(@InjectModel(Product.name) private productModel: Model<ProductDocument>) {}
 
   async findMany() {
     return this.productModel.find().lean();
