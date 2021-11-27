@@ -39,7 +39,7 @@ export const UserSchema = SchemaFactory.createForClass(User);
 
 UserSchema.index({ email: 1 });
 
-UserSchema.pre('save', async function (next: () => void) {
+UserSchema.pre('save', async (next: () => void) => {
   const user = this as UserDocument;
 
   if (!user.isModified('password')) {
@@ -52,12 +52,10 @@ UserSchema.pre('save', async function (next: () => void) {
 
   user.password = hash;
 
-  // return next();
+  return next();
 });
 
-UserSchema.methods.comparePassword = async function (
-  candidatePassword: string,
-) {
+UserSchema.methods.comparePassword = async (candidatePassword: string) => {
   const user = this as UserDocument;
 
   return bcrypt.compare(candidatePassword, user.password).catch(() => false);

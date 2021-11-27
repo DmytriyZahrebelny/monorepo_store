@@ -3,8 +3,6 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { GraphQLModule } from '@nestjs/graphql';
 
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { CompanyModule } from '../company/company.module';
 import { ProductModule } from '../product/product.module';
 import { UserModule } from '../user/user.module';
@@ -39,7 +37,5 @@ import { decode } from '../utils/jwt.utils';
     ProductModule,
     UserModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}

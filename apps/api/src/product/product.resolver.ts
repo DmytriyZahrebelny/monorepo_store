@@ -1,18 +1,7 @@
-import {
-  Resolver,
-  Query,
-  ResolveField,
-  Parent,
-  Args,
-  Mutation,
-} from '@nestjs/graphql';
+import { Resolver, Query, ResolveField, Parent, Args, Mutation } from '@nestjs/graphql';
 import { CompanyService } from '../company/company.service';
 import { Company } from '../company/company.schema';
-import {
-  Product,
-  CreateProductInput,
-  FindProductInput,
-} from './product.schema';
+import { Product, CreateProductInput, FindProductInput } from './product.schema';
 import { ProductService } from './product.service';
 
 @Resolver(() => Product)

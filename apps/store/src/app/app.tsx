@@ -1,38 +1,23 @@
-import { Route, Link } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import { css } from '@emotion/css';
+import { Layout } from 'antd';
 
-export function App() {
-  return (
-      <div role="navigation">
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/page-2">Page 2</Link>
-          </li>
-        </ul>
+import { Authorization } from '../authorization';
+import { GadgetStore } from '../gadget-store';
+import { ROUTES } from '../app.constants';
 
-        <Route
-          path="/"
-          exact
-          render={() => (
-            <div>
-              This is the generated root route.{' '}
-              <Link to="/page-2">Click here for page 2.</Link>
-            </div>
-          )}
-        />
-        <Route
-          path="/page-2"
-          exact
-          render={() => (
-            <div>
-              <Link to="/">Click here to go back to root page.</Link>
-            </div>
-          )}
-        />
-      </div>
-  );
-}
+export const contentStyles = css`
+  height: 100vh;
+  overflow: auto;
+`;
+
+const App = () => (
+  <Layout className={contentStyles}>
+    <Switch>
+      <Route exact path={['/', ROUTES.gadgets]} component={GadgetStore} />
+      <Route path={[ROUTES.singIn, ROUTES.signUp]} component={Authorization} />
+    </Switch>
+  </Layout>
+);
 
 export default App;
