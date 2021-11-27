@@ -17,10 +17,7 @@ import { ProductService } from './product.service';
 
 @Resolver(() => Product)
 export class ProductResolver {
-  constructor(
-    private productService: ProductService,
-    private companyService: CompanyService,
-  ) {}
+  constructor(private productService: ProductService, private companyService: CompanyService) {}
 
   @Query(() => [Product])
   async products() {

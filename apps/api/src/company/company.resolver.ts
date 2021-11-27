@@ -12,10 +12,7 @@ import { CompanyService } from './company.service';
 
 @Resolver(() => Company)
 export class CompanyResolver {
-  constructor(
-    private companyService: CompanyService,
-    private bookService: ProductService,
-  ) {}
+  constructor(private companyService: CompanyService, private bookService: ProductService) {}
 
   @Query(() => [Company])
   async companies() {
