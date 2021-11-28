@@ -1,0 +1,23 @@
+{
+  "root": "libs/form-components",
+  "sourceRoot": "libs/form-components/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/form-components/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/form-components"],
+      "options": {
+        "jestConfig": "libs/form-components/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

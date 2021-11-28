@@ -1,6 +1,6 @@
 import { Button } from 'antd';
 
-import { Form, Field } from '../../components/form-components';
+import { Form, Field } from '@monorepo-store/form-components';
 import { useSignIn } from './use-sign-in';
 import { formStyles } from '../authorization.styles';
 

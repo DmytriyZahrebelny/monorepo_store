@@ -1,7 +1,7 @@
 import { Col, Row } from 'antd';
 import { Link } from 'react-router-dom';
-import { Icon } from '../components/Icon';
 
+import { Icon } from '@monorepo-store/icon';
 import { headerStyles, headerContainerStyles } from './header.styles';
 import { HeaderSearch } from './header-search';
 import { HeaderLogin } from './header-login';
