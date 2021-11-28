@@ -55,10 +55,10 @@ UserSchema.pre('save', async (next: () => void) => {
   return next();
 });
 
-UserSchema.methods.comparePassword = async (candidatePassword: string) => {
+UserSchema.methods.comparePassword = async function comparePassword(candidatePassword: string) {
   const user = this as UserDocument;
 
-  return bcrypt.compare(candidatePassword, user.password).catch(() => false);
+  return bcrypt.compare(candidatePassword, user.password).catch((e) => false);
 };
 
 @InputType()
