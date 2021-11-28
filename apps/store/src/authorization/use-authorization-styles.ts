@@ -6,10 +6,6 @@ export const useAuthorizationStyles = createUseStyles({
     width: 700,
     backgroundColor: '#fff',
     boxShadow: '0 8px 32px rgb(39 59 97 / 8%)',
-
-    '& .ant-form-item': {
-      marginBottom: 0,
-    },
   },
   header: {
     position: 'fixed',
