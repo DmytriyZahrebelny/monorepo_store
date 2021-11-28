@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken';
+import { sign, verify } from 'jsonwebtoken';
 
 const privateKey = `-----BEGIN RSA PRIVATE KEY-----
 MIICXAIBAAKBgQCGhLlpouwodWJ7O+ErKGXSGw18oKN7OKgaxxa878PWRAdKGxDC
@@ -24,13 +24,13 @@ LFib1ZXwlJ2635lp+X1h2ij8w1IMYkCtkpcaS9J1NWyRp2YGRFIb4fSu1DLVeBEt
 -----END PUBLIC KEY-----`;
 
 export function signJwt(payload) {
-  return jwt.sign(payload, privateKey, { algorithm: 'RS256' });
+  return sign(payload, privateKey, { algorithm: 'RS256' });
 }
 
 export function decode(token: string) {
   if (!token) return null;
   try {
-    const decoded = jwt.verify(token, publicKey);
+    const decoded = verify(token, publicKey);
 
     return decoded;
   } catch (error) {

@@ -2,6 +2,7 @@ import { get, set } from 'lodash';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { GraphQLModule } from '@nestjs/graphql';
+import { GraphQLError, GraphQLFormattedError } from 'graphql';
 
 import { CompanyModule } from '../company/company.module';
 import { ProductModule } from '../product/product.module';
@@ -15,10 +16,8 @@ import { decode } from '../utils/jwt.utils';
       autoSchemaFile: './apps/api/schema.gql',
       context: ({ req, res }) => {
         const token = get(req, 'cookies.token');
-        console.log({ token });
 
         const user = token ? decode(get(req, 'cookies.token')) : null;
-        console.log(user);
 
         if (user) {
           set(req, 'user', user);
@@ -30,6 +29,13 @@ import { decode } from '../utils/jwt.utils';
         origin: 'http://localhost:4200',
         credentials: true,
         allowedHeaders: ['Content-Type', 'Authorization'],
+      },
+      formatError: (err: GraphQLError) => {
+        const graphQLFormattedError: GraphQLFormattedError = {
+          message: err.message,
+        };
+
+        return graphQLFormattedError;
       },
     }),
 

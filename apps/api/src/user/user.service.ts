@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { nanoid } from 'nanoid';
+import { UserInputError } from 'apollo-server-express';
 
 import Ctx from '../types/context.type';
 import { User, UserDocument, CreateUserInput, ConfirmUserInput, LoginInput } from './user.schema';
@@ -10,7 +11,7 @@ import { signJwt } from '../utils/jwt.utils';
 
 @Injectable()
 export class UserService {
-  @InjectModel(User.name) private userModel: Model<UserDocument>;
+  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
   async createUser(input: CreateUserInput) {
     const confirmToken = nanoid(32);
@@ -25,7 +26,7 @@ export class UserService {
     const user = await this.userModel.findOne({ email });
 
     if (!user || confirmToken !== user.confirmToken) {
-      throw new Error('Email or confirm token are incorrect');
+      return new UserInputError('Email or confirm token are incorrect');
     }
 
     user.active = true;
@@ -46,6 +47,7 @@ export class UserService {
     }
 
     const jwt = signJwt(omit(user.toJSON(), ['password', 'active']));
+
     const cookie = `token=${jwt}; HttpOnly; Path=/; Max-Age=${1000 * 60 * 60 * 24 * 7}`;
     context.res.setHeader('Set-Cookie', cookie);
 

@@ -1,7 +1,8 @@
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useMutation } from '@apollo/client';
+import { useMutation, ApolloError } from '@apollo/client';
 import { useHistory } from 'react-router-dom';
+import { notification } from 'antd';
 
 import LoginMutation from '../../graphql/Login.mutation.gql';
 import QueryMe from '../../graphql/Me.query.gql';
@@ -9,15 +10,19 @@ import { LoginMutationType, LoginMutationVariables, LoginInput } from '../../typ
 
 export const useSignIn = () => {
   const history = useHistory();
-  const [login, { error, loading }] = useMutation<LoginMutationType, LoginMutationVariables>(LoginMutation, {
+  const [login, { loading }] = useMutation<LoginMutationType, LoginMutationVariables>(LoginMutation, {
     refetchQueries: [{ query: QueryMe }],
+    onError: ({ message }: ApolloError) => {
+      notification.error({ message });
+    },
+    onCompleted: () => {
+      history.push('/');
+    },
   });
 
   const onSubmit = (data: LoginInput) => {
     const { email, password } = data;
     login({ variables: { input: { email, password } } });
-
-    history.push('/');
   };
 
   const schema = yup.object().shape({
@@ -27,7 +32,6 @@ export const useSignIn = () => {
 
   return {
     onSubmit,
-    error,
     loading,
     validationScheme: yupResolver(schema),
   };

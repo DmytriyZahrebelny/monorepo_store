@@ -6,7 +6,7 @@ import Ctx from '../types/context.type';
 
 @Resolver('User')
 export class UserResolver {
-  private readonly userService: UserService;
+  constructor(private readonly userService: UserService) {}
 
   @Mutation(() => User)
   async registerUser(@Args('input') input: CreateUserInput) {
