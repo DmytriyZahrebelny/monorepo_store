@@ -1,23 +1,22 @@
 import { Route, Switch } from 'react-router-dom';
-import { css } from '@emotion/css';
 import { Layout } from 'antd';
 
 import { Authorization } from '../authorization';
 import { GadgetStore } from '../gadget-store';
 import { ROUTES } from '../app.constants';
+import { useAppStyles } from './use-app-styles';
 
-export const contentStyles = css`
-  height: 100vh;
-  overflow: auto;
-`;
+const App = () => {
+  const classes = useAppStyles();
 
-const App = () => (
-  <Layout className={contentStyles}>
-    <Switch>
-      <Route exact path={['/', ROUTES.gadgets]} component={GadgetStore} />
-      <Route path={[ROUTES.singIn, ROUTES.signUp]} component={Authorization} />
-    </Switch>
-  </Layout>
-);
+  return (
+    <Layout className={classes.layout}>
+      <Switch>
+        <Route exact path={['/', ROUTES.gadgets]} component={GadgetStore} />
+        <Route path={[ROUTES.singIn, ROUTES.signUp]} component={Authorization} />
+      </Switch>
+    </Layout>
+  );
+};
 
 export default App;
