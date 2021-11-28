@@ -11,9 +11,6 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.4.17",
-    "@emotion/css": "^11.5.0",
-    "@emotion/react": "11.5.0",
-    "@emotion/styled": "11.3.0",
     "@hookform/resolvers": "^2.8.3",
     "@nestjs/common": "^7.0.0",
     "@nestjs/core": "^7.0.0",
@@ -46,7 +43,6 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
-    "@emotion/babel-plugin": "11.3.0",
     "@nestjs/schematics": "^7.0.0",
     "@nestjs/testing": "^7.0.0",
     "@nrwl/cli": "13.1.3",
