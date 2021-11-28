@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
 import { Typography } from 'antd';
 
-import { Icon } from '../../components/Icon';
+import { Icon } from '@monorepo-store/icon';
 import MeQuery from '../../graphql/Me.query.gql';
 import { MeQueryType } from '../../types';
 

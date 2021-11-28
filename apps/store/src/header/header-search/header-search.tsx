@@ -1,4 +1,4 @@
-import { Field, Form } from '../../components/form-components';
+import { Field, Form } from '@monorepo-store/form-components';
 import { useHeaderSearch } from './use-header-search';
 
 export const HeaderSearch = () => {

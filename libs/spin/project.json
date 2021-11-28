@@ -1,0 +1,23 @@
+{
+  "root": "libs/spin",
+  "sourceRoot": "libs/spin/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/spin/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/spin"],
+      "options": {
+        "jestConfig": "libs/spin/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

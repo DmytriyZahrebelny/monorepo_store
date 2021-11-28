@@ -1,10 +1,10 @@
 import { Layout } from 'antd';
 import { Link, Route, Switch } from 'react-router-dom';
 
+import { Icon } from '@monorepo-store/icon';
 import { Menu } from './menu';
 import { SignUp } from './sign-up';
 import { SignIn } from './sign-in';
-import { Icon } from '../components/Icon';
 import { headerStyles, containerStyles, authorizationStyles } from './authorization.styles';
 import { ROUTES } from '../app.constants';
 

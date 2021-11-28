@@ -2,6 +2,9 @@
   "version": 2,
   "projects": {
     "api": "apps/api",
+    "form-components": "libs/form-components",
+    "icon": "libs/icon",
+    "spin": "libs/spin",
     "store": "apps/store",
     "store-e2e": "apps/store-e2e"
   }
