@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import Spin from './spin';
+import { Spin } from './spin';
 
 describe('Spin', () => {
   it('should render successfully', () => {
