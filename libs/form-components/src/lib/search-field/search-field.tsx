@@ -2,7 +2,7 @@ import { Form, Input, Typography } from 'antd';
 import { useFormContext, Controller } from 'react-hook-form';
 
 import { SearchFieldProps, ControllerArgumentsType } from '../types';
-import { labelStyles } from '../styles';
+import { useFormStyles } from '../use-form-styles';
 import 'antd/dist/antd.css';
 
 export const SearchField = ({
@@ -17,6 +17,7 @@ export const SearchField = ({
   ...props
 }: SearchFieldProps) => {
   const { control } = useFormContext();
+  const classes = useFormStyles();
 
   const getField = ({ field, fieldState }: ControllerArgumentsType) => {
     const handleChange = (value: string) => {
@@ -28,7 +29,7 @@ export const SearchField = ({
     return (
       <Form.Item
         label={
-          <Typography.Text strong className={labelStyles}>
+          <Typography.Text strong className={classes.label}>
             {label}
           </Typography.Text>
         }

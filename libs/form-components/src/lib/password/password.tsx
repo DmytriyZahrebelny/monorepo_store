@@ -2,7 +2,7 @@ import { Form, Input, Typography } from 'antd';
 import { useFormContext, Controller } from 'react-hook-form';
 
 import { TextFieldProps, ControllerArgumentsType, EventType } from '../types';
-import { labelStyles } from '../styles';
+import { useFormStyles } from '../use-form-styles';
 
 export const Password = ({
   name,
@@ -15,6 +15,7 @@ export const Password = ({
   placeholder = '',
 }: TextFieldProps) => {
   const { control } = useFormContext();
+  const classes = useFormStyles();
 
   const getField = ({ field, fieldState }: ControllerArgumentsType) => {
     const handleChange = (evt: EventType) => {
@@ -29,7 +30,7 @@ export const Password = ({
       <Form.Item
         className={className}
         label={
-          <Typography.Text strong className={labelStyles}>
+          <Typography.Text strong className={classes.label}>
             {label}
           </Typography.Text>
         }
