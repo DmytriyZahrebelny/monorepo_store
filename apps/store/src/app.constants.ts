@@ -1,5 +1,5 @@
 export const ROUTES = {
-  singIn: '/sign-in',
-  signUp: '/sign-up',
-  gadgets: '/gadgets',
+  singIn: 'sign-in',
+  signUp: 'sign-up',
+  gadgets: 'gadgets',
 };

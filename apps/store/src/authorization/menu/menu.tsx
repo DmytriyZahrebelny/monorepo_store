@@ -10,10 +10,10 @@ export const Menu = () => {
 
   return (
     <div className={classes.menu}>
-      <Link className={c({ [classes.aciveLink]: pathname === ROUTES.singIn })} to={ROUTES.singIn}>
+      <Link className={c({ [classes.aciveLink]: pathname.includes(ROUTES.singIn) })} to={ROUTES.singIn}>
         Log in
       </Link>
-      <Link className={c({ [classes.aciveLink]: pathname === ROUTES.signUp })} to={ROUTES.signUp}>
+      <Link className={c({ [classes.aciveLink]: pathname.includes(ROUTES.signUp) })} to={ROUTES.signUp}>
         Create an account
       </Link>
     </div>

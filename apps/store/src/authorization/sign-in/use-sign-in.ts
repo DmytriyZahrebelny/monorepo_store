@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useMutation, ApolloError } from '@apollo/client';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { notification } from 'antd';
 
 import LoginMutation from '../../graphql/Login.mutation.gql';
@@ -9,14 +9,14 @@ import QueryMe from '../../graphql/Me.query.gql';
 import { LoginMutationType, LoginMutationVariables, LoginInput } from '../../types';
 
 export const useSignIn = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [login, { loading }] = useMutation<LoginMutationType, LoginMutationVariables>(LoginMutation, {
     refetchQueries: [{ query: QueryMe }],
     onError: ({ message }: ApolloError) => {
       notification.error({ message });
     },
     onCompleted: () => {
-      history.push('/');
+      navigate('/');
     },
   });
 
