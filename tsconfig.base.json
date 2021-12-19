@@ -17,7 +17,8 @@
     "paths": {
       "@monorepo-store/form-components": ["libs/form-components/src/index.ts"],
       "@monorepo-store/icon": ["libs/icon/src/index.ts"],
-      "@monorepo-store/spin": ["libs/spin/src/index.ts"]
+      "@monorepo-store/spin": ["libs/spin/src/index.ts"],
+      "@monorepo-store/thema": ["libs/thema/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

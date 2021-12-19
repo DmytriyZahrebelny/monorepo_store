@@ -2,7 +2,7 @@ import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-
+import { Thema } from '@monorepo-store/thema';
 import App from './app/app';
 
 export const apolloClient = new ApolloClient({
@@ -16,7 +16,9 @@ ReactDOM.render(
   <StrictMode>
     <ApolloProvider client={apolloClient}>
       <BrowserRouter>
-        <App />
+        <Thema>
+          <App />
+        </Thema>
       </BrowserRouter>
     </ApolloProvider>
   </StrictMode>,
