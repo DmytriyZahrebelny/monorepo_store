@@ -1,11 +1,12 @@
 import { createUseStyles } from 'react-jss';
+import { ThemaType } from '@monorepo-store/thema';
 
-export const useAuthorizationStyles = createUseStyles({
+export const useAuthorizationStyles = createUseStyles((thema: ThemaType) => ({
   container: {
     display: 'block',
     width: 700,
     backgroundColor: '#fff',
-    boxShadow: '0 8px 32px rgb(39 59 97 / 8%)',
+    boxShadow: thema.gradients.light,
   },
   header: {
     position: 'fixed',
@@ -20,4 +21,4 @@ export const useAuthorizationStyles = createUseStyles({
   formContainer: {
     padding: '20px 50px 50px !important',
   },
-});
+}));

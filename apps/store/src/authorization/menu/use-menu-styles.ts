@@ -1,9 +1,10 @@
 import { createUseStyles } from 'react-jss';
+import { ThemaType } from '@monorepo-store/thema';
 
-export const useMenuStyles = createUseStyles({
+export const useMenuStyles = createUseStyles((thema: ThemaType) => ({
   menu: {
     display: 'flex',
-    boxShadow: '0 8px 32px rgb(39 59 97 / 8%)',
+    boxShadow: thema.gradients.light,
 
     '& a': {
       display: 'flex',
@@ -13,10 +14,10 @@ export const useMenuStyles = createUseStyles({
       padding: '15px 0',
       fontSize: 'large',
       fontWeight: 'bold',
-      color: '#273b61',
+      color: thema.palette.text.primary,
     },
   },
   aciveLink: {
     backgroundColor: '#d5edfe',
   },
-});
+}));

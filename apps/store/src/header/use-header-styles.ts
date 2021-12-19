@@ -1,13 +1,14 @@
+import { ThemaType } from '@monorepo-store/thema';
 import { createUseStyles } from 'react-jss';
 
-export const useHeaderStyles = createUseStyles({
+export const useHeaderStyles = createUseStyles((thema: ThemaType) => ({
   header: {
     display: 'flex',
     justifyContent: 'center',
     marginBottom: 24,
-    backgroundColor: '#3b6d9a',
+    backgroundColor: thema.palette.background.secondary,
   },
   headerContainer: {
     width: 1366,
   },
-});
+}));
